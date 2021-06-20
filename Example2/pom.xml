@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>JSR269Demo</artifactId>
+        <groupId>org.example</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>Example2</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+
+        <!--
+            类似于spi，
+            不需要自己再去META-INF/services文件夹下创建 javax.annotation.processing.Processor 并指定对应的processor，
+            在打包的时候会自动注入
+         -->
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <version>1.0-rc2</version>
+        </dependency>
+
+        <!--
+            用于更便捷的实现AST编程
+            抽象语法树（abstract syntax code，AST）是源代码的抽象语法结构的树状表示，
+            树上的每个节点都表示源代码中的一种结构，这所以说是抽象的，
+            是因为抽象语法树并不会表示出真实语法出现的每一个细节，
+            比如说，嵌套括号被隐含在树的结构中，并没有以节点的形式呈现。
+            抽象语法树并不依赖于源语言的语法，也就是说语法分析阶段所采用的上下文无文文法，
+            因为在写文法时，经常会对文法进行等价的转换（消除左递归，回溯，二义性等），
+            这样会给文法分析引入一些多余的成分，对后续阶段造成不利影响，甚至会使合个阶段变得混乱。
+            因些，很多编译器经常要独立地构造语法分析树，为前端，后端建立一个清晰的接口。
+            抽象语法树在很多领域有广泛的应用，比如浏览器，智能编辑器，编译器。
+        -->
+        <dependency>
+            <groupId>com.squareup</groupId>
+            <artifactId>javapoet</artifactId>
+            <version>1.8.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>tools</artifactId>
+            <version>1.8</version>
+            <scope>system</scope>
+            <systemPath>${java.home}/../lib/tools.jar</systemPath>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                    <configuration>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>com.google.auto.service</groupId>
+                                <artifactId>auto-service</artifactId>
+                                <version>1.0-rc2</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
