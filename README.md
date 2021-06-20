@@ -13,5 +13,5 @@ ps: 之前一直在一个项目中验证失败的原因是java在编译时，会
 会去找该文件(内容)里指定的处理器(注: 这个处理器此时应当是一个已经编译了的class文件),以 这个处理器来辅助执行此次的编译。 简单的说，就是: 要编译这个项目，可以! 但是你得先提供对应处理器的class文件才行。 但是呢,
 这个处理器,正是我们此次需要编译的java文件之一;也就是说它还没有被编译呢,还只是java文件,而不是class文件。
 
-参考：https://blog.csdn.net/justry_deng/article/details/106176181 和 https://blog.csdn.
-net/sunquan291/article/details/102635274 实现
+参考：https://blog.csdn.net/justry_deng/article/details/106176181
+和 https://blog.csdn.net/sunquan291/article/details/102635274 实现
